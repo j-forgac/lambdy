@@ -32,7 +32,7 @@ public class Main {
 				case 3 -> System.out.println(alterEach(inputList, i -> i * 2));
 				case 4 -> System.out.println(alterEach(inputList, i -> (int) Math.ceil((double) i / 10) * 8)); /*ceil zakrouhluje jenom na jednotky, proto musíme vydělit 10*/
 				case 5 -> System.out.println(reduce(inputList, 0, (i, sum) -> sum += i));
-				case 6 -> System.out.println(reduce(inputList, 1, (i, sum) -> sum *= i)); /*původní činitel musí být při získávání produktu jedna*/
+				case 6 -> System.out.println(reduce(inputList, 1, (i, product) -> product *= i)); /*původní činitel musí být při získávání produktu jedna*/
 				default -> throw new IllegalStateException("Unexpected value: " + operation);
 			}
 		}
@@ -56,10 +56,8 @@ public class Main {
 		return result;
 	}
 
-	static Integer result;
-
 	public static Integer reduce(List<Integer> list, Integer startingVal, IMathOperation by) {
-		result = startingVal;
+		Integer result = startingVal;
 		for (Integer i : list) {
 			result = by.mathOperation(i, result);
 		}
